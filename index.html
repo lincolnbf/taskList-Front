@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -36,9 +37,11 @@
                     <label for="exampleTextarea">Descrição</label>
                     <textarea ng-model="task.descricao" class="form-control" id="descricao" rows="3"></textarea>
                 </div>
-                <button ng-click="add(task)" type="button" class="btn btn-outline-success">Adicionar Task</button>
+                
+                <button ng-if="salvar" ng-click="add(task)" type="button" class="btn btn-outline-success">Adicionar Task</button>
+                <button ng-if="!salvar" ng-click="edit_save(task)" type="button" class="btn btn-outline-success">Salvar Alterações</button>
+                <button ng-if="!salvar" ng-click="cancel()" type="button" class="btn btn-outline-danger">Cancelar</button>
             </form>
-            {{task}}
             <hr>
 
 
@@ -58,21 +61,21 @@
                     <td>{{t.descricao}}</td>
                     <td>{{t.status}}</td>
                     <td>
-                        <button type="button" class="btn btn-sm btn-outline-success">Editar
+                        <button ng-click="editMode(t)" type="button" class="btn btn-sm btn-outline-success">Editar
                             <i class="fas fa-edit"></i>
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-sm btn-outline-danger">Excluir
+                        <button ng-click="delete_task(t.id)" type="button" class="btn btn-sm btn-outline-danger">Excluir
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </td>
                 </tbody>
-            </table>            
+            </table>
         </div>
     </div>
 
-    
+
 </body>
 
 </html>
