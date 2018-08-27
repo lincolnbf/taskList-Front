@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="css/circlebtn.css">    
+    <link rel="stylesheet" href="css/style.css">    
 
 </head>
 
 <body class="bgcol">
     <div ng-controller="Hello">
-        <div class="container-fluid">
+        <div class="container">
 
             <hr>
 
@@ -26,22 +26,25 @@
                     <h1 class="display-4">Tasks</h1>
                     <p class="lead">Teste prático para a Supero</p>
                 </div>
-            </div>
-            
-            
-
-            <form>
+            </div>                        
+            <form name="formulario">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Título</label>
-                    <input ng-model="task.titulo" type="text" class="form-control" id="titulo" aria-describedby="emailHelp" placeholder="Entre com o título da tarefa">
+                    <input ng-model="task.titulo" required ng-minlength="5" ng-maxlength="80" type="text" class="form-control" name="titulo" id="titulo" aria-describedby="emailHelp" placeholder="Entre com o título da tarefa">
+                    <div ng-if="formulario.titulo.$touched && formulario.titulo.$invalid">
+                        Este campo deve possuir entre 5 e 80 caracteres
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="exampleTextarea">Descrição</label>
-                    <textarea ng-model="task.descricao" class="form-control" id="descricao" rows="3"></textarea>
+                    <textarea ng-model="task.descricao" required ng-minlength="5" ng-maxlength="254" class="form-control" name="descricao" id="descricao" rows="3"></textarea>
+                    <div ng-if="formulario.descricao.$touched && formulario.descricao.$invalid">
+                            Este campo deve possuir entre 5 e 254 caracteres
+                    </div>
                 </div>
-
-                <button ng-if="salvar" ng-click="add(task)" type="button" class="btn btn-outline-success">Adicionar Task</button>
-                <button ng-if="!salvar" ng-click="edit_save(task)" type="button" class="btn btn-outline-success">Salvar Alterações</button>
+                
+                <button ng-disabled="formulario.$invalid" ng-if="salvar" ng-click="add(task)" type="button" class="btn btn-outline-success">Adicionar Task</button>
+                <button ng-disabled="formulario.$invalid" ng-if="!salvar" ng-click="edit_save(task)" type="button" class="btn btn-outline-success">Salvar Alterações</button>
                 <button ng-if="!salvar" ng-click="cancel()" type="button" class="btn btn-outline-danger">Cancelar</button>
             </form>
             <hr>

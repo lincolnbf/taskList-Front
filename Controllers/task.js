@@ -13,6 +13,7 @@ angular.module("App", []).controller("Hello", function($scope, $http) {
       .post("http://localhost:8080/tasks", tasks)
       .then(function(success) {
         load();
+        clear();
         return genericSuccess(success);
       });
   };
@@ -65,7 +66,9 @@ angular.module("App", []).controller("Hello", function($scope, $http) {
   };
 
   var clear = function() {
-    $scope.task = [];
+    $scope.formulario.$setUntouched();
+    $scope.formulario.$setPristine();
+    $scope.task = {};
   };
 
   $scope.cancel = function(t) {
