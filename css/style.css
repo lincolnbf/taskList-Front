@@ -2,3 +2,7 @@
 input.ng-touched.ng-invalid, textarea.ng-touched.ng-invalid {
     border-color: lightcoral;
 }
+
+.jumbotron {
+    background-color: aliceblue !important; 
+}
