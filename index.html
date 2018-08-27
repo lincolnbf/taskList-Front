@@ -9,7 +9,8 @@
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
 </head>
 
 <body>
@@ -26,6 +27,21 @@
             </div>
 
 
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Título</label>
+                    <input ng-model="task.titulo" type="text" class="form-control" id="titulo" aria-describedby="emailHelp" placeholder="Entre com o título da tarefa">
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea">Descrição</label>
+                    <textarea ng-model="task.descricao" class="form-control" id="descricao" rows="3"></textarea>
+                </div>
+                <button ng-click="add(task)" type="button" class="btn btn-outline-success">Adicionar Task</button>
+            </form>
+            {{task}}
+            <hr>
+
+
             <table class="table table-striped table-condensed">
 
                 <thead>
@@ -36,19 +52,27 @@
                     <th></th>
                     <th></th>
                 </thead>
-                <tbody ng-repeat="g in greeting">
-                    <td>{{g.id}}</td>
-                    <td>{{g.titulo}}</td>
-                    <td>{{g.descricao}}</td>
-                    <td>{{g.status}}</td>
-                    <td><button type="button" class="btn btn-sm btn-outline-success">Editar <i class="fas fa-edit"></i></button></td>
-                    <td><button type="button" class="btn btn-sm btn-outline-danger">Excluir <i class="fas fa-trash-alt"></i></button></td>
+                <tbody ng-repeat="t in tasks">
+                    <td>{{t.id}}</td>
+                    <td>{{t.titulo}}</td>
+                    <td>{{t.descricao}}</td>
+                    <td>{{t.status}}</td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-outline-success">Editar
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-outline-danger">Excluir
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
                 </tbody>
-            </table>
-
-            <button type="button" class="btn btn-outline-primary">Inserir nova tarefa </button>
+            </table>            
         </div>
     </div>
+
+    
 </body>
 
 </html>
