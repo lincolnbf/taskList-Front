@@ -1,6 +1,3 @@
-
-
-
 angular.module("App", []).controller("Hello", function($scope, $http) {
   $http.get("http://localhost:8080/tasks/").then(function(response) {
     $scope.tasks = response.data;
@@ -20,44 +17,65 @@ angular.module("App", []).controller("Hello", function($scope, $http) {
       });
   };
 
-  $scope.delete_task = function(id) {   
-    var url= "http://localhost:8080/tasks/" + id; 
-    $http.delete(url).then(function (response) {
-        load();    
-        }, function (response) {                
-    });
-  }
+  $scope.delete_task = function(id) {
+    var url = "http://localhost:8080/tasks/" + id;
+    $http.delete(url).then(
+      function(response) {
+        load();
+      },
+      function(response) {}
+    );
+  };
 
-  $scope.editMode = function(t){          
+  $scope.editMode = function(t) {
     $scope.task = t;
     $scope.salvar = false;
-  }
+  };
 
-  $scope.edit_save = function(t){
+  $scope.edit_save = function(t) {
     var url = "http://localhost:8080/tasks/" + t.id;
-    $http.put(url, t).then(function (response) {
-        load();    
-        }, function (response) {                
-    });
+    $http.put(url, t).then(
+      function(response) {
+        load();
+      },
+      function(response) {}
+    );
     $scope.salvar = true;
     clear();
-  }
+  };
 
-  var clear = function (){
-      $scope.task = [];
-  }
+  $scope.concluir = function(id) {
+    var url = "http://localhost:8080/tasks/finish/" + id;
+    $http.put(url).then(
+      function(response) {
+        load();
+      },
+      function(response) {}
+    );
+  };
 
-  $scope.cancel = function(t){
-      $scope.task = [];
-      $scope.salvar = true;
-  }
-                
+  $scope.desfazer = function(id) {
+    var url = "http://localhost:8080/tasks/undo/" + id;
+    $http.put(url).then(
+      function(response) {
+        load();
+      },
+      function(response) {}
+    );
+  };
+
+  var clear = function() {
+    $scope.task = [];
+  };
+
+  $scope.cancel = function(t) {
+    $scope.task = [];
+    $scope.salvar = true;
+  };
 
   var load = function() {
     $http.get("http://localhost:8080/tasks/").then(function(response) {
       $scope.tasks = response.data;
     });
   };
-
-  
 });
