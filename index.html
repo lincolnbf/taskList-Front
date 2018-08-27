@@ -1,23 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html ng-app="App">
+<meta charset="UTF-8">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <script src="js/bootstrap.min.js"></script>
+    <title>Hello AngularJS</title>
+    <script src="js/angular.js"></script>
+    <script src="Controllers/task.js"></script>
     <script src="js/jquery.js"></script>
-
-    <title>Tasks</title>
-
-    
-
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
+
 <body>
-    
+    <div ng-controller="Hello">
+
+        <div class="container">
+            <table class="table table-striped">
+
+                <thead>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                </thead>
+                <tbody ng-repeat="g in greeting">
+                    <td>{{g.id}}</td>
+                    <td>{{g.titulo}}</td>
+                    <td>{{g.descricao}}</td>
+                    <td>{{g.status}}</td>
+                </tbody>
 
 
+            </table>
+        </div>
+
+
+    </div>
 </body>
+
 </html>
