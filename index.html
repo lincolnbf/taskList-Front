@@ -16,7 +16,7 @@
 </head>
 
 <body class="bgcol">
-    <div ng-controller="Hello">
+    <div ng-controller="TaskController">
         <div class="container">
 
             <hr>
@@ -45,9 +45,9 @@
                     </div>
                 </div>
 
-                <button ng-disabled="formulario.$invalid" ng-if="salvar" ng-click="add(task)" type="button" class="btn btn-outline-success">Adicionar Task</button>
-                <button ng-disabled="formulario.$invalid" ng-if="!salvar" ng-click="edit_save(task)" type="button" class="btn btn-outline-success">Salvar Alterações</button>
-                <button ng-if="!salvar" ng-click="cancel()" type="button" class="btn btn-outline-danger">Cancelar</button>
+                <button ng-disabled="formulario.$invalid" ng-if="salvar" ng-click="add(task)" type="button" class="btn btn-outline-success"><i class="fas fa-plus"></i> Adicionar Task</button>
+                <button ng-disabled="formulario.$invalid" ng-if="!salvar" ng-click="edit_save(task)" type="button" class="btn btn-outline-success"><i class="fas fa-database"></i> Salvar Alterações</button>
+                <button ng-if="!salvar" ng-click="cancel()" type="button" class="btn btn-outline-danger"><i class="fas fa-times"></i> Cancelar</button>
             </form>
             <hr>
 
@@ -60,7 +60,7 @@
             <input class="form-control" placeholder="O que você está buscando?" ng-model="filtro" type="text" name="filtro" id="filtro">
 
             <hr>
-            
+
             <table class="table table-striped table-bordered" ng-if="tasks.length ">
                 <thead>
                     <th>ID</th>
